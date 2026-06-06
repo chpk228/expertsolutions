@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Registration</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: bg 10s ease infinite;
+}
+
+@keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h2 { color: white; margin-bottom: 20px; }
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+select {
+  background-color: white;
+  cursor: pointer;
+  color: #333;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffc107;
+  transform: scale(1.05);
+}
+
+.glow {
+  color: white;
+  font-size: 14px;
+  margin-top: 15px;
+  min-height: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>🧑‍🏫 Training Registration</h2>
+
+  <input id="name" type="text" placeholder="Full Name">
+  <input id="phone" type="tel" maxlength="10" placeholder="10 Digit Mobile Number">
+  <input id="email" type="email" placeholder="Email Address">
+  
+  <select id="course">
+    <option value="" disabled selected>Select a course</option>
+    <option value="Mainframes">Mainframes</option>
+    <option value="DevOps+(AWS)">DevOps+(AWS)</option>
+    <option value="Project work">Project work</option>
+    <option value="Career guidance">Career guidance</option>
+    <option value="personality development">personality development</option>
+  </select>
+ 
+  <select id="learningMode">
+    <option value="" disabled selected>Select a Learning Mode</option>
+    <option value="Offline mode">Offline mode</option>
+    <option value="Online mode">Online mode</option>
+  </select>
+
+  <input id="city" type="text" placeholder="Enter Your City">
+  
+  <button onclick="registration()" style="position: relative; z-index: 9999;">Register Service</button>
+
+  <div class="glow" id="msg"></div>
+</div>
+
+<script>
+async function registration() {
+  const msg = document.getElementById("msg");
+  
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const course = document.getElementById("course").value;
+  const city = document.getElementById("city").value.trim();
+  const learningMode = document.getElementById("learningMode").value;
+
+  // Validation Check
+  if (!name || !phone || !email || !course || !city || !learningMode) {
+    msg.style.color = "#ff4d4d";
+    msg.innerText = "Please fill in all fields! ⚠️";
+    return;
+  }
+
+  const phonePattern = /^[0-9]{10}$/;
+  if (!phonePattern.test(phone)) {
+    msg.style.color = "#ff4d4d";
+    msg.innerText = "Enter a valid 10-digit number! 📱";
+    return;
+  }
+
+  msg.style.color = "white";
+  msg.innerText = "Connecting to server...";
+
+  try {
+    const API_URL = "https://ze5bbo1p8h.execute-api.us-east-1.amazonaws.com/ReGiSt1/My-ReGiStA";
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userName: name,
+        contactNumber: phone,
+        emailAddress: email,
+        requiredCourse: course,
+        userCity: city,
+        learningMode: learningMode 
+      })
+    });
+
+    if (response.ok) {
+      msg.style.color = "#00ff00";
+      msg.innerText = "Success! We will contact you soon. 🎉";
+      
+      setTimeout(() => {
+        window.location.href = "index.html"; 
+      }, 2000);
+    } else {
+      const result = await response.json();
+      msg.style.color = "#ff4d4d";
+      msg.innerText = "Error: " + (result.message || "Registration failed");
+    }
+
+  } catch (error) {
+    msg.style.color = "#ff4d4d";
+    msg.innerText = "Network error or server issues! ❌";
+    console.error("Fetch Error:", error);
+  }
+}
+</script>
+
+</body>
+</html>
+
