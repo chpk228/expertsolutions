@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: bg 10s ease infinite;
+}
+
+@keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffc107;
+  transform: scale(1.05);
+}
+
+.glow {
+  color: white;
+  font-size: 14px;
+  margin-top: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+  <h2>🔐 Login</h2>
+
+  <input id="user" placeholder="Username">
+  <input id="pass" type="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+
+  <div class="glow" id="msg"></div>
+</div>
+
+<script>
+function login() {
+
+  document.getElementById("msg").innerText = "Checking...";
+
+  fetch("https://your-api.com/login", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      username: document.getElementById("user").value,
+      password: document.getElementById("pass").value
+    })
+  })
+
+  .then(res => res.json())
+  .then(data => {
+
+    if(data.success) {
+      localStorage.setItem("user", data.username);
+
+      document.getElementById("msg").innerText = "Login Success 🎉";
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1000);
+
+    } else {
+      document.getElementById("msg").innerText = "Invalid Login ❌";
+    }
+
+  });
+
+}
+</script>
+
+</body>
+</html>
