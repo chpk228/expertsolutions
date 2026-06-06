@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paone Cloud Services</title>
+
+<style>
+/* --- CSS VARIABLES (Kept your design) --- */
+:root {
+    --bg-color: #004D40;
+    --text-color: white;
+    --header-bg: #004D40;
+    --nav-bg: #111b27;
+    --section-bg: rgba(255,255,255,0.07);
+}
+
+.light-mode {
+    --bg-color: #f4f7f6;
+    --text-color: #1a2a3a;
+    --header-bg: #3498db;
+    --nav-bg: #ffffff;
+    --section-bg: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden; /* Fixes the "not good looking" mobile shake */
+}
+
+/* HEADER */
+header {
+    background: var(--header-bg);
+    text-align: center;
+    padding: 15px;
+    border-bottom: 3px solid #3498db;
+}
+
+/* NAVBAR - FIXED TO SHOW ALL LINKS ON MOBILE */
+nav {
+    background: var(--nav-bg);
+    display: flex;
+    flex-wrap: wrap; /* Allows links to move to next line if screen is tiny */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.nav-left {
+    display: flex;
+    flex-wrap: wrap; /* Keeps Home, Providers etc. visible */
+}
+
+nav a {
+    color: #ffcc00;
+    padding: 8px 10px; /* Reduced padding for mobile fit */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: #3498db;
+    border-radius: 5px;
+}
+
+/* THEME & MENU BUTTONS */
+.theme-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.menu-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: #FFD700;
+    margin-left: 10px;
+}
+
+/* SIDE PANEL */
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 260px;
+    height: 100%;
+    background: #0d161f;
+    padding-top: 60px;
+    transition: 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.side-panel a {
+    display: block;
+    padding: 15px 20px;
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+/* NEWS BAR */
+#newsBar {
+    background: #0d161f;
+    color: #ffcc00;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.scroll-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollText 25s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* SECTIONS - ADJUSTED FOR MOBILE */
+section {
+    margin: 15px;
+    padding: 20px;
+    background: var(--section-bg);
+    border-radius: 10px;
+    word-wrap: break-word; /* Prevents text from breaking layout */
+}
+
+h2 {
+    color: #ffc72c;
+}
+
+#istClock{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 10px;
+    color: #ffcc00;
+}
+
+/* FOOTER */
+footer {
+    background: #0d161f;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Tech Expert Solutions</h1>
+</header>
+
+<nav>
+    <div class="nav-left">
+        <a href="#home">Home</a>
+        <a href="#Courses">Courses</a>
+        <a href="#Training">Training</a>
+        
+        
+    </div>
+
+    <div style="display: flex; align-items: center;">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        <div class="menu-btn" onclick="openMenu()">☰</div>
+    </div>
+</nav>
+
+<!-- SIDE PANEL (As you had it) -->
+<div id="sidePanel" class="side-panel">
+    <span class="close-btn" onclick="closeMenu()" style="position:absolute; top:10px; right:20px; font-size:30px; color:white; cursor:pointer;">&times;</span>
+    <a href="index.html">Home</a>
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact us</a>
+    <a href="registration.html">Register</a>
+    <a href="error.html">Feedback</a>
+</div>
+
+<!-- NEWS -->
+<div id="newsBar">
+    <div class="scroll-text">
+        📰 TES has devloped new cloud solutions | ☁ AWS Azure GCP growth operations |
+🚀 Cloud computing booming in 2026 | 🔥 cloud automation rising worldwide | 😊 new mainfraimes batch started soon.
+    </div>
+</div>
+<!-- HOME -->
+<section id="home">
+<h2>Home</h2>
+<p>We are a software training  consulting team building scalable and modern cloud solutions and projects.Devops+Ai is a modern approach to software development  and  mainframes  that brings development and operations teams together to deliver applications and website faster and more reliability. It focuses on collaboration, automation, and continuous improvement across the software lifecycle.</p>
+</section>
+
+<!-- Courses -->
+<section id="Courses">
+<h2>Mainframes</h2>
+<p>Mainframes are high-performance computers designed to process billions of calculations and critical transactions in real time. Unlike standard servers, they are built for massive data throughput, advanced security, and unmatched reliability.
+<p>A single mainframe can process over one trillion web transactions daily. Systems operate continuously for decades without needing a single reboot. Hardware-embedded encryption protects sensitive data from modern cyber threats. Built-in redundant components prevent system crashes and data loss.Where They Are UsedGlobal banking industries rely on mainframes to process ninety percent of all credit card transactions worldwide. Retail supply systems use them to manage inventory and payments for the world's largest stores. Travel booking networks handle millions of flight and hotel reservations every second. The public sector uses them to power healthcare infrastructure, tax systems, and social security programs.<p>
+<p>IBM created z/OS as the dominant and highly secure operating system for these machines. Developers use COBOL as the resilient programming language powering the majority of business logic. Engineers write JCL as the scripting language to control background data processing jobs. DB2 serves as IBM's powerful relational database built for massive enterprise storage.<p>
+
+<ul>
+<li>Mainframe Basics and Architecture</li>
+<li>Controlling Tasks with JCL</li>
+<li>Business Logic with COBOL</li>
+<li>Real Time Transactions with CICS</li>
+<li>Database Hierarchies with IMS</li>
+<li>Advanced Assembly with Assembler Language</li>
+<li>Systems Programming and Performance Tuning</li>
+</ul>
+
+
+</section>
+
+<!-- DevOps -->
+<section id="Courses">
+<h2>Devops</h2>
+<p>Engineers build continuous integration pipelines to test application changes instantly. Specialized software automatically checks newly written code for syntax errors and architectural compliance violations. Automated testing reduces manual code reviews from weeks to minutes. It ensures that developers catch software bugs long before deployment.
+<p>DevOps practices transform rigid backend systems into flexible microservices using RESTful APIs. This modern architecture connects mobile applications and front-end web platforms directly to core processing databases. Existing business logic becomes instantly accessible to cloud-native platforms without rewriting entire architectures. It maximizes current infrastructure software value while supporting full digital transformation.
+<p>Automation engines orchestrate the movement of compiled software packages into active production environments. Infrastructure as code tools configure server systems systematically to eliminate manual human setup errors. Teams can push minor product enhancements and critical security updates to live servers multiple times daily. This rapid delivery model allows modern businesses to respond to user needs instantly.
+<p>Engineering teams manage and provision cloud infrastructure through machine-readable definition files. This approach replaces manual server configuration with automated software scripts. Teams version-control their infrastructure files to track environment modifications accurately over time. It guarantees identical staging and production setups while eliminating environment drift.
+<p>Developers package applications and their dependencies together into lightweight virtual containers. This isolation ensures software runs consistently across local laptops and public cloud infrastructure. Teams break large monolithic applications into smaller independent microservices for easier management. It enables isolated updates to specific features without risking the stability of the entire platform.
+</p>
+<ul>
+<li>Advanced operating system</li>
+<li>Git Version Control Integration</li>
+<li>jenkins ci-cd</li>
+<li>Docker for Containerisation and Microservices</li>
+<li>Kubernates for Automated Scaling and Load Balancing</li>
+<li>Monitoring and Observability</li>
+<li>DevSecOps and Security Integration</li>
+
+</section>
+
+<!-- AWS cloud -->
+
+<section id="services">
+<h2>Amazon web services</h2>
+<p>Cloud VPC networking provides secure isolated networks with subnets, routing tables, and full traffic control for cloud infrastructure and  allowing you to launch resources like EC2 instances in a private, secure environment. You control IP address ranges, subnets, route tables, and gateways, enabling both public-facing and private, secured,A VPC resides within an AWS Region and spans all Availability Zones (AZs) in that region. Subnets are subdivisions within a VPC that reside within a single Availability Zone.ou define IPv4 and IPv6 CIDR blocks for your VPC, creating a dedicated network space.
+<p><p>Amazon Web Services, Inc. (AWS) is a subsidiary of Amazon that provides on-demand cloud computing platforms and APIs to individuals, companies, and governments, on a metered, pay-as-you-go basis.
+Clients often use this in combination with autoscaling (a process that allows a client to use more computing in times of high application usage, and then scale down to reduce costs when there is less traffic). These cloud computing web services provide various services related to networking, compute, storage, middleware, IoT and other processing capacity, as well as software tools via AWS server farms. This frees clients from managing, scaling, and patching hardware and operating systems.
+<p>One of the foundational services is Amazon Elastic Compute Cloud (EC2), which allows users to have at their disposal a virtual cluster of computers, with extremely high availability, which can be interacted with over the internet via REST APIs, a CLI or the AWS console. AWS's virtual computers emulate most of the attributes of a real computer, including hardware central processing units (CPUs) and graphics processing units (GPUs) for processing; local/RAM memory; hard-disk (HDD)/SSD storage; a choice of operating systems; networking; and pre-loaded application software such as web servers, databases, and customer relationship management (CRM).
+<p>AWS services are delivered to customers via a network of AWS server farms located throughout the world. Fees are based on a combination of usage (known as a "Pay-as-you-go" model), hardware, operating system, software, and networking features chosen by the subscriber requiring various degrees of availability, redundancy, security, and service options. Subscribers can pay for a single virtual AWS computer, a dedicated physical computer, or clusters of either. Amazon provides select portions of security for subscribers (e.g. physical security of the data centers) while other aspects of security are the responsibility of the subscriber (e.g. account management, vulnerability scanning, patching). AWS operates from many global geographical regions, including nine in North America.<p>
+<p>As of 2025 AWS comprises over 200 products and services including computing, storage, networking, database, analytics, application services, deployment, management, machine learning,mobile, developer tools, RobOps and tools for the Internet of Things. The most popular include Amazon Elastic Compute Cloud (EC2), Amazon Simple Storage Service (Amazon S3), Amazon Connect, and AWS Lambda (a serverless function that can perform arbitrary code written in any language that can be configured to be triggered by hundreds of events, including HTTP calls)
+
+<ul>
+<li>EC2</li>
+<li>S3 Storage</li>
+<li>AWS Lambda</li>
+<li>VPC Networking</li>
+<li>Amazon Aurora</li>
+<li>Amazon Bedrock</li>
+<li>Amazon sage maker</li>
+</ul>
+
+</p>
+</section>
+
+<!-- Training -->
+<section id="Training">
+<h2>Training</h2>
+<p>TES institute collaborate with industry tech leaders to design relevant course blueprints. Master trainers analyze current hiring trends to identify critical programming languages and software tools. They build structured modules that balance theoretical foundations with hands-on technical application. This alignment ensures that the material taught matches active developer vacancies in the job market.
+<p>Students attend scheduled lecture sessions led by veteran software engineering instructors. Educators use live coding demonstrations to explain syntax rules, logic structures, and architectural frameworks. Complex theoretical concepts are broken down into simple components using relatable real-world software examples. This interactive guidance provides a foundation before students begin independent coding practice.
+<p>Learners spend significant time in dedicated virtual or physical code laboratories. They work through structured exercises to apply coding concepts learned during instructional sessions. Institutes provide pre-configured development environments so students can code without installation hurdles. This immediate practice builds muscle memory and troubleshooting skills on active software projects.
+<p>Students build comprehensive software applications at the conclusion of major course modules. These portfolio projects require combining multiple skills like database design, backend logic, and frontend presentation. Learners store their finalized applications in public repositories like Git to showcase capabilities. This tangible proof of skill serves as a digital resume for potential employers.
+<p>Instructors conduct routine code reviews and technical quizzes to monitor student comprehension. Graders evaluate code submissions based on optimization, readability, and industry best practices. Students receive granular feedback highlighting syntax errors, security flaws, and logic improvements. This ongoing evaluation prevents learning gaps and keeps students on track.
+<p>The training workflow finishes with rigorous employment readiness training and career support. Institutes organize mock technical interviews, resume workshops, and portfolio optimization sessions. Placement cells connect qualified graduates directly with hiring partners and enterprise recruiters. This final pipeline transitions students smoothly from classroom learning to professional technology roles.</p>
+
+<ul>
+<li>Curriculum Design and Industry Alignment</li>
+<li>Structured Expert Led Instruction</li>
+<li>Hands On Lab Practice</li>
+<li>Milestone Projects and Portfolios</li>
+<li>Continuous Assessment and Feedback</li>
+<li>Career Preparation and Placement</li>
+</ul>
+
+</p>..</p>
+</section>
+
+<!-- CLOCK -->
+<p id="istClock"></p>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026-27. Tech Expert Solutions All copy rights are reserved.</p>
+<p>Designed and maintained by Tech Expert Solutions Bengalore.</p>
+</footer>
+
+<script>
+function openMenu() {
+    document.getElementById("sidePanel").style.right = "0";
+}
+
+function closeMenu() {
+    document.getElementById("sidePanel").style.right = "-260px";
+}
+
+/* --- NEW: THEME TOGGLE FUNCTION --- */
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById("themeBtn");
+    
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("light-mode")) {
+        btn.innerHTML = "☀️ Light Mode";
+    } else {
+        btn.innerHTML = "🌙 Dark Mode";
+    }
+}
+
+/* IST CLOCK */
+function updateClock() {
+    const now = new Date();
+    const ist = new Date(now.toLocaleString("en-US", {
+        timeZone: "Asia/Kolkata"
+    }));
+    document.getElementById("istClock").innerText =
+        "Time: " + ist.toLocaleString();
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
+

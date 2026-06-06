@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paone Cloud Services</title>
+
+<style>
+/* --- CSS VARIABLES (Kept your design) --- */
+:root {
+    --bg-color: #004D40;
+    --text-color: white;
+    --header-bg: #004D40;
+    --nav-bg: #111b27;
+    --section-bg: rgba(255,255,255,0.07);
+}
+
+.light-mode {
+    --bg-color: #f4f7f6;
+    --text-color: #1a2a3a;
+    --header-bg: #3498db;
+    --nav-bg: #ffffff;
+    --section-bg: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden; /* Fixes the "not good looking" mobile shake */
+}
+
+/* HEADER */
+header {
+    background: var(--header-bg);
+    text-align: center;
+    padding: 15px;
+    border-bottom: 3px solid #3498db;
+}
+
+/* NAVBAR - FIXED TO SHOW ALL LINKS ON MOBILE */
+nav {
+    background: var(--nav-bg);
+    display: flex;
+    flex-wrap: wrap; /* Allows links to move to next line if screen is tiny */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.nav-left {
+    display: flex;
+    flex-wrap: wrap; /* Keeps Home, Providers etc. visible */
+}
+
+nav a {
+    color: #ffcc00;
+    padding: 8px 10px; /* Reduced padding for mobile fit */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: #3498db;
+    border-radius: 5px;
+}
+
+/* THEME & MENU BUTTONS */
+.theme-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.menu-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ffcc00;
+    margin-left: 10px;
+}
+
+/* SIDE PANEL */
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 260px;
+    height: 100%;
+    background: #0d161f;
+    padding-top: 60px;
+    transition: 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.side-panel a {
+    display: block;
+    padding: 15px 20px;
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+/* NEWS BAR */
+#newsBar {
+    background: #0d161f;
+    color: #ffcc00;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.scroll-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollText 25s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* SECTIONS - ADJUSTED FOR MOBILE */
+section {
+    margin: 15px;
+    padding: 20px;
+    background: var(--section-bg);
+    border-radius: 10px;
+    word-wrap: break-word; /* Prevents text from breaking layout */
+}
+
+h2 {
+    color: #ffc72c;
+}
+
+#istClock{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 10px;
+    color: #ffcc00;
+}
+
+/* FOOTER */
+footer {
+    background: #0d161f;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Tech Expert Solutions</h1>
+</header>
+
+<nav>
+    <div class="nav-left">
+        <a href="#home">Home</a>
+        <a href="#Courses">Courses</a>
+        <a href="#Training">Training</a>
+        
+    </div>
+
+    <div style="display: flex; align-items: center;">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        <div class="menu-btn" onclick="openMenu()">☰</div>
+    </div>
+</nav>
+
+<!-- SIDE PANEL (As you had it) -->
+<div id="sidePanel" class="side-panel">
+    <span class="close-btn" onclick="closeMenu()" style="position:absolute; top:10px; right:20px; font-size:30px; color:white; cursor:pointer;">&times;</span>
+    <a href="index.html">Home</a>
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="registration.html">Register</a>
+    <a href="error.html">Feedback</a>
+</div>
+
+<!-- NEWS -->
+<div id="newsBar">
+    <div class="scroll-text">
+        📰 TES has devloped new cloud solutions | ☁ AWS Azure GCP growth |
+🚀 Cloud computing booming in 2026 | 🔥 DevOps automation rising worldwide | 😊 new mainfraimes batch started soon..
+    </div>
+</div>
+<!-- HOME -->
+<section id="home">
+<h2>Home</h2>
+<p>We are a software training consulting team building scalable and modern cloud solutions and projects.Devops+Ai is a modern approach to software development and mainframes that brings development and operations teams together to deliver applications and website faster and more reliability. It focuses on collaboration, automation, and continuous improvement across the software lifecycle</p>
+</section>
+
+   </p>
+</section>
+
+<main>
+
+<section id="contact us">
+    <h2>contact us</h2>
+    <p>Tech Expert Solutions (TES).<br>
+	<p> H/o Ramachandrapuram ,Andhra Pradesh.</p>
+    <p> B/o Bengalore, Karnataka.</p>
+
+    <ul>
+        <li>bengaluru karnataka 560037</li>
+        <li>Ramachandrapuram Andhra Pradesh 500349</li>
+        
+    </ul>
+</section>
+
+</section>
+
+<!-- CLOCK -->
+<p id="istClock"></p>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026-27. Tech Expert Solutions All copy rights are reserved.</p>
+<p>Designed and maintained by Tech Expert Solutions Bengalore.</p>
+</footer>
+
+<script>
+function openMenu() {
+    document.getElementById("sidePanel").style.right = "0";
+}
+
+function closeMenu() {
+    document.getElementById("sidePanel").style.right = "-260px";
+}
+
+/* --- NEW: THEME TOGGLE FUNCTION --- */
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById("themeBtn");
+    
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("light-mode")) {
+        btn.innerHTML = "☀️ Light Mode";
+    } else {
+        btn.innerHTML = "🌙 Dark Mode";
+    }
+}
+
+/* IST CLOCK */
+function updateClock() {
+    const now = new Date();
+    const ist = new Date(now.toLocaleString("en-US", {
+        timeZone: "Asia/Kolkata"
+    }));
+    document.getElementById("istClock").innerText =
+        "Time: " + ist.toLocaleString();
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
+

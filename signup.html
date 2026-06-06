@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup Page</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Smooth animated gradient background */
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: bg 10s ease infinite;
+}
+
+@keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffc107;
+  transform: scale(1.05);
+}
+
+.glow {
+  color: white;
+  font-size: 14px;
+  margin-top: 10px;
+  min-height: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>🔐 Create Account</h2>
+
+  <input id="username" type="text" placeholder="Username or Email">
+  <input id="password" type="password" placeholder="Create Password">
+
+  <button onclick="signup()">Signup</button>
+
+  <div class="glow" id="msg"></div>
+</div>
+
+<script>
+async function signup() {
+  const msg = document.getElementById("msg");
+  const userValue = document.getElementById("username").value;
+  const passValue = document.getElementById("password").value;
+
+  // Check if fields are empty
+  if (!userValue || !passValue) {
+    msg.style.color = "#ff4d4d";
+    msg.innerText = "Please fill in all fields! ⚠️";
+    return;
+  }
+
+  msg.style.color = "white";
+  msg.innerText = "Connecting to server...";
+
+  try {
+    /* 
+       NOTE: Replace this URL with your actual AWS API Gateway endpoint.
+       The current URL 'amazonaws.com' is a placeholder and will not work.
+    */
+    const API_URL = "https://32t6vjha6l.execute-api.us-east-1.amazonaws.com/SigN1/MY-sIGNUp";
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      mode: "cors", // Enabled to prevent CORS (Cross-Origin Resource Sharing) issues
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: userValue,
+        password: passValue
+      })
+    });
+
+    // Check if the response contains valid JSON
+    const result = await response.json();
+
+    if (response.ok) {
+      msg.style.color = "#00ff00";
+      msg.innerText = "Success! data saved to database server.🎉";
+      
+      // Redirect to index page after 2 seconds
+      setTimeout(() => {
+         window.location.href = "index.html"; 
+      }, 2000);
+    } else {
+      msg.style.color = "#ff4d4d";
+      msg.innerText = "Error: " + (result.message || "Signup failed");
+    }
+
+  } catch (error) {
+    msg.style.color = "#ff4d4d";
+    msg.innerText = "Network error or CORS issue! ❌";
+    console.error("Fetch Error:", error);
+  }
+}
+</script>
+
+</body>
+</html>
+
